@@ -19,6 +19,7 @@ document.getElementById('start').addEventListener('click', () => {
             clearInterval(interval);
             interval = null;
             document.getElementById('start').textContent = '开始';
+            document.getElementById('start').innerHTML = '<i class="fas fa-play"></i> 开始';
         } else {
             interval = setInterval(() => {
                 timers[currentModule] = (timers[currentModule] || 0) + 1;
@@ -27,6 +28,7 @@ document.getElementById('start').addEventListener('click', () => {
                 checkAlerts();
             }, 1000);
             document.getElementById('start').textContent = '暂停';
+            document.getElementById('start').innerHTML = '<i class="fas fa-pause"></i> 暂停';
         }
     }
 });
@@ -35,6 +37,7 @@ document.getElementById('stop').addEventListener('click', () => {
     clearInterval(interval);
     interval = null;
     document.getElementById('start').textContent = '开始';
+    document.getElementById('start').innerHTML = '<i class="fas fa-play"></i> 开始';
 });
 
 document.querySelectorAll('input[type=radio][name=module]').forEach(radio => {
@@ -42,7 +45,7 @@ document.querySelectorAll('input[type=radio][name=module]').forEach(radio => {
         clearInterval(interval);
         interval = null;
         currentModule = event.target.id;
-        document.getElementById('start').textContent = '开始';
+        document.getElementById('start').innerHTML = '<i class="fas fa-play"></i> 开始';
     });
 });
 
@@ -61,7 +64,7 @@ function checkAlerts() {
         playAudio('examAlert1');
     } else if (totalSeconds === 6600) { // 考试时间仅剩10分钟
         playAudio('examWillEnd');
-    } else if (totalSeconds === 7200) { // 考试时间结束
+    } else if (totalSeconds === 7200) { // 考���时间结束
         playAudio('examEnd');
     }
 }
