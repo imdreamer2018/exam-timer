@@ -114,7 +114,6 @@ body {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
-    background-color: #fff; /* 背景为白色 */
     border: 1px solid #ddd; /* 外边框 */
 }
 
@@ -126,12 +125,10 @@ body {
 }
 
 .details-row th {
-    background-color: #f5f5f5; /* 头部背景色 */
     font-weight: bold;
 }
 
 .details-row td {
-    background-color: #fafafa; /* 行背景色 */
     padding: 8px; /* 详情行的内边距 */
 }
 
