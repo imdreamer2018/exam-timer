@@ -68,3 +68,14 @@ button {
 button:hover {
     background-color: #37474f;
 }
+
+#history {
+    background-color: #37474f !important; 
+    border: 1px solid #455a64; /* 外边框 */
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;/* 圆角 */
+    overflow-x: auto;
+    width: 100%;
+    max-width: 600px;
+}

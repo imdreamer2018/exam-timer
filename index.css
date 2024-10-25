@@ -99,17 +99,6 @@ body {
     opacity: 1;
 }
 
-#history {
-    background-color: #fff; /* 背景为白色 */
-    border: 1px solid #ddd; /* 外边框 */
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 5px;/* 圆角 */
-    overflow-x: auto;
-    width: 100%;
-    max-width: 600px;
-}
-
 #history-table {
     width: 100%;
     border-collapse: collapse; /* 确保表格边框合并 */
@@ -118,14 +107,8 @@ body {
 #history-table th, #history-table td {
     padding: 12px; /* 增加单元格的内边距 */
     text-align: left;
-    border-bottom: 1px solid #ddd;
-    background-color: #fff; /* 确保单元格背景色为白色 */
+    border-bottom: 1px solid #ddd; /* 确保单元格背景色为白色 */
 }
-
-#history-table th {
-    background-color: #f2f2f2; /* 为表头添加背景色 */
-}
-
 
 .details-row table {
     width: 100%;
