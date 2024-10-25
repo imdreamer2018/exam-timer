@@ -64,7 +64,7 @@ function checkAlerts() {
         playAudio('examAlert1');
     } else if (totalSeconds === 6600) { // 考试时间仅剩10分钟
         playAudio('examWillEnd');
-    } else if (totalSeconds === 7200) { // 考���时间结束
+    } else if (totalSeconds === 7200) { // 考试时间结束
         playAudio('examEnd');
     }
 }
@@ -91,3 +91,130 @@ function formatTime(seconds) {
     const secs = seconds % 60;
     return `${hrs.toString().padStart(2, '0')}:${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
 }
+
+document.getElementById('save').addEventListener('click', () => {
+    const testName = prompt('请输入当前考试的试题名称:');
+    if (testName) {
+        const now = new Date();
+        const dateTime = now.toLocaleString();
+        
+        // 保存每个模块的时间
+        const moduleTimes = {
+            "常识判断": formatTime(timers["常识判断"] || 0),
+            "言语理解与表达": formatTime(timers["言语理解与表达"] || 0),
+            "数量关系": formatTime(timers["数量关系"] || 0),
+            "图形推理": formatTime(timers["图形推理"] || 0),
+            "定义推理": formatTime(timers["定义推理"] || 0),
+            "类比推理": formatTime(timers["类比推理"] || 0),
+            "逻辑推理": formatTime(timers["逻辑推理"] || 0),
+            "资料分析": formatTime(timers["资料分析"] || 0)
+        };
+        
+        const totalTime = formatTime(totalSeconds);
+
+        const historyData = {
+            dateTime,
+            testName,
+            moduleTimes,
+            totalTime
+        };
+
+        saveToLocalStorage(historyData);
+        alert('计时已保存！');
+    }
+});
+
+function saveToLocalStorage(data) {
+    const history = JSON.parse(localStorage.getItem('exam_timer_history') || '[]');
+    history.push(data);
+    localStorage.setItem('exam_timer_history', JSON.stringify(history));
+}
+
+function loadHistory() {
+    const history = JSON.parse(localStorage.getItem('exam_timer_history') || '[]');
+    const tbody = document.getElementById('history-table').querySelector('tbody');
+    tbody.innerHTML = ''; // 清空现有内容
+
+    history.forEach((entry, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${index + 1}</td> <!-- 添加序号 -->
+            <td>${entry.dateTime}</td>
+            <td>${entry.testName}</td>
+            <td>${entry.totalTime}</td>
+            <td>
+                <button onclick="toggleDetails(this, ${index})">详情</button>
+                <button onclick="editHistory(${index})">修改</button>
+                <button onclick="deleteHistory(${index})">删除</button>
+            </td>
+        `;
+        tbody.appendChild(row);
+    });
+}
+
+function toggleDetails(button, index) {
+    const history = JSON.parse(localStorage.getItem('exam_timer_history') || '[]');
+    const entry = history[index];
+    const row = button.parentElement.parentElement;
+
+    if (button.textContent === '详情') {
+        const detailsRow = document.createElement('tr');
+        detailsRow.className = 'details-row';
+        detailsRow.innerHTML = `
+            <td colspan="4">
+                <table style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>题型</th>
+                            <th>时间</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${Object.entries(entry.moduleTimes).map(([module, time]) => `
+                            <tr>
+                                <td style="text-align: center;">${module}</td>
+                                <td style="text-align: center;">${time}</td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            </td>
+        `;
+        row.parentNode.insertBefore(detailsRow, row.nextSibling);
+        button.textContent = '隐藏';
+    } else {
+        const detailsRow = row.nextSibling;
+        if (detailsRow && detailsRow.classList.contains('details-row')) {
+            detailsRow.remove();
+        }
+        button.textContent = '详情';
+    }
+}
+
+function editHistory(index) {
+    const history = JSON.parse(localStorage.getItem('exam_timer_history') || '[]');
+    const entry = history[index];
+    const newTestName = prompt('修改试题名称:', entry.testName);
+    if (newTestName) {
+        entry.testName = newTestName;
+        localStorage.setItem('exam_timer_history', JSON.stringify(history));
+        loadHistory();
+    }
+}
+
+function deleteHistory(index) {
+    const history = JSON.parse(localStorage.getItem('exam_timer_history') || '[]');
+    history.splice(index, 1);
+    localStorage.setItem('exam_timer_history', JSON.stringify(history));
+    loadHistory();
+}
+
+document.getElementById('toggle-history').addEventListener('click', () => {
+    const historyDiv = document.getElementById('history');
+    if (historyDiv.style.display === 'none' || historyDiv.style.display === '') {
+        historyDiv.style.display = 'block';
+        loadHistory(); // 加载历史数据
+    } else {
+        historyDiv.style.display = 'none';
+    }
+});

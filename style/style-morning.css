@@ -59,7 +59,7 @@ button {
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 10px 15px;
     margin: 0 10px;
     cursor: pointer;
     transition: background-color 0.3s;
@@ -69,8 +69,3 @@ button:hover {
     background-color: #0d47a1;
 }
 
-#total-time {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #0d47a1;
-}

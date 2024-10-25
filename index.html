@@ -67,11 +67,27 @@
         </div>
     </div>
     <div id="controls">
-        <button id="start"><i class="fas fa-play"></i> 开始</button> <!-- 使用图标和文本 -->
-        <button id="stop"><i class="fas fa-stop"></i> 停止</button>
+        <button id="start"><i class="fas fa-play"></i> 开始</button>
+        <button id="stop"><i class="fas fa-stop"></i> 终止</button>
+        <button id="save"><i class="fas fa-save"></i> 保存</button> <!-- 保存按钮 -->
+        <button id="toggle-history"><i class="fas fa-history"></i> 历史</button> <!-- 历史计时按钮 -->
     </div>
-    <div id="total-time">
-        <h2>累计时长: <span id="total-time-display">00:00:00</span></h2>
+    <h2>累计时长: <span id="total-time-display">00:00:00</span></h2>
+    <div id="history" style="display: none; overflow-x: auto;">
+        <table id="history-table">
+            <thead>
+                <tr>
+                    <th>序号</th> <!-- 添加序号列 -->
+                    <th>日期</th>
+                    <th>试题</th>
+                    <th>用时</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 历史数据将插入到这里 -->
+            </tbody>
+        </table>
     </div>
 
     <!-- 添加音频元素 -->
