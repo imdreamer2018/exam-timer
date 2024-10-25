@@ -98,6 +98,8 @@ body {
     margin-top: 10px;
     border-radius: 5px;/* 圆角 */
     overflow-x: auto;
+    width: 100%;
+    max-width: 600px;
 }
 
 #history-table {
