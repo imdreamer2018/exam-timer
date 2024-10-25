@@ -12,6 +12,9 @@ body {
 
 
 #style-selector {
+    position: absolute;
+    top: 10px;
+    right: 20px;
     padding: 5px;
     border-radius: 5px;
     display: flex;
@@ -22,7 +25,6 @@ body {
 #style-selector label {
     margin-right: 10px;
     font-weight: bold;
-    color: #4a4e69;
 }
 
 #style-selector select {
@@ -40,6 +42,12 @@ body {
     box-shadow: 0 0 5px rgba(74, 78, 105, 0.5);
 }
 
+#countdown {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 5px;
+}
 .copy-btn {
     background: none;
     border: none;

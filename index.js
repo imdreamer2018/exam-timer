@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
     const countdownElement = document.getElementById('countdown');
-    countdownElement.textContent = `距离2025国考剩余 ${daysLeft} 天！祝你有个好成绩，早日上岸！`;
+    countdownElement.textContent = `距离2025国考剩余 ${daysLeft} 天！祝你金榜题名，早日上岸！`;
 
     const styleSelector = document.getElementById('style');
     const themeStyleLink = document.getElementById('theme-style');
