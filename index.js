@@ -152,8 +152,8 @@ function loadHistory() {
             <td>${entry.totalTime}</td>
             <td>
                 <i class="fas fa-info-circle" onclick="toggleDetails(this, ${index})" style="cursor: pointer;"></i>
-                <i class="fas fa-edit" onclick="editHistory(${index})" style="cursor: pointer; margin-left: 10px;"></i>
-                <i class="fas fa-trash-alt" onclick="deleteHistory(${index})" style="cursor: pointer; margin-left: 10px;"></i>
+                <i class="fas fa-edit" onclick="editHistory(${index})" style="cursor: pointer;"></i>
+                <i class="fas fa-trash-alt" onclick="deleteHistory(${index})" style="cursor: pointer;"></i>
             </td>
         `;
         tbody.appendChild(row);
