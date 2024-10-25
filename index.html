@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link id="theme-style" rel="stylesheet" href="style-green.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>国家公务员考试-行政能力测试计时器</title>
+</head>
+<body>
+    <div class="blessing">
+        <p>预祝你有个好成绩，早日上岸！</p>
+    </div>
+    <div id="style-selector">
+        <label for="style">选择样式:</label>
+        <select id="style">
+            <option value="style-classic.css">经典</option>
+            <option value="style-modern.css">现代</option>
+            <option value="style-green.css" selected>绿色</option>
+            <option value="style-red.css">中国红</option>
+            <option value="style-morning.css">清晨</option>
+            <option value="style-night.css">夜晚</option>
+        </select>
+    </div>
+    <h1>行政能力测试计时器</h1>
+    <div id="modules">
+        <div>
+            <input type="radio" name="module" id="verbal" value="言语理解与表达">
+            <label for="verbal"><i class="fas fa-book"></i> 言语理解与表达</label>
+            <span class="time-display" id="verbal-time">00:00:00</span>
+        </div>
+        <div>
+            <input type="radio" name="module" id="quantitative" value="数量关系">
+            <label for="quantitative"><i class="fas fa-calculator"></i> 数量关系</label>
+            <span class="time-display" id="quantitative-time">00:00:00</span>
+        </div>
+        <div>
+            <input type="radio" name="module" id="graphic" value="图形推理">
+            <label for="graphic"><i class="fas fa-shapes"></i> 图形推理</label>
+            <span class="time-display" id="graphic-time">00:00:00</span>
+        </div>
+        <div>
+            <input type="radio" name="module" id="definition" value="定义推理">
+            <label for="definition"><i class="fas fa-book-open"></i> 定义推理</label>
+            <span class="time-display" id="definition-time">00:00:00</span>
+        </div>
+        <div>
+            <input type="radio" name="module" id="analogy" value="类比推理">
+            <label for="analogy"><i class="fas fa-balance-scale"></i> 类比推理</label>
+            <span class="time-display" id="analogy-time">00:00:00</span>
+        </div>
+        <div>
+            <input type="radio" name="module" id="logic" value="逻辑推理">
+            <label for="logic"><i class="fas fa-brain"></i> 逻辑推理</label>
+            <span class="time-display" id="logic-time">00:00:00</span>
+        </div>
+        <div>
+            <input type="radio" name="module" id="data" value="资料分析">
+            <label for="data"><i class="fas fa-chart-bar"></i> 资料分析</label>
+            <span class="time-display" id="data-time">00:00:00</span>
+        </div>
+        <div>
+            <input type="radio" name="module" id="common" value="常识判断">
+            <label for="common"><i class="fas fa-globe"></i> 常识判断</label>
+            <span class="time-display" id="common-time">00:00:00</span>
+        </div>
+    </div>
+    <div id="controls">
+        <button id="start">开始</button>
+        <button id="stop">终止</button>
+    </div>
+    <div id="total-time">
+        <h2>累计时长: <span id="total-time-display">00:00:00</span></h2>
+    </div>
+
+    <!-- 添加音频元素 -->
+    <audio id="examAlert1" src="audio/exam_alert1.mp3"></audio>
+    <audio id="examWillEnd" src="audio/exam_will_end.mp3"></audio>
+    <audio id="examEnd" src="audio/exam_end.mp3"></audio>
+
+    <script src="index.js"></script>
+</body>
+</html>
