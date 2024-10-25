@@ -11,6 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const countdownElement = document.getElementById('countdown');
     countdownElement.textContent = `距离2025国考剩余 ${daysLeft} 天！祝你有个好成绩，早日上岸！`;
+
+    const styleSelector = document.getElementById('style');
+    const themeStyleLink = document.getElementById('theme-style');
+
+    styleSelector.addEventListener('change', (event) => {
+        const selectedStyle = event.target.value;
+        themeStyleLink.setAttribute('href', selectedStyle);
+    });
 });
 
 document.getElementById('start').addEventListener('click', () => {
@@ -138,30 +146,35 @@ function loadHistory() {
     history.forEach((entry, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${index + 1}</td> <!-- 添加序号 -->
+            <td>${index + 1}</td>
             <td>${entry.dateTime}</td>
             <td>${entry.testName}</td>
             <td>${entry.totalTime}</td>
             <td>
-                <button onclick="toggleDetails(this, ${index})">详情</button>
-                <button onclick="editHistory(${index})">修改</button>
-                <button onclick="deleteHistory(${index})">删除</button>
+                <i class="fas fa-info-circle" onclick="toggleDetails(this, ${index})" style="cursor: pointer;"></i>
+                <i class="fas fa-edit" onclick="editHistory(${index})" style="cursor: pointer; margin-left: 10px;"></i>
+                <i class="fas fa-trash-alt" onclick="deleteHistory(${index})" style="cursor: pointer; margin-left: 10px;"></i>
             </td>
         `;
         tbody.appendChild(row);
     });
 }
 
-function toggleDetails(button, index) {
+function toggleDetails(icon, index) {
     const history = JSON.parse(localStorage.getItem('exam_timer_history') || '[]');
     const entry = history[index];
-    const row = button.parentElement.parentElement;
+    const row = icon.parentElement.parentElement;
 
-    if (button.textContent === '详情') {
-        const detailsRow = document.createElement('tr');
-        detailsRow.className = 'details-row';
-        detailsRow.innerHTML = `
-            <td colspan="4">
+    const detailsRow = row.nextSibling;
+    if (detailsRow && detailsRow.classList.contains('details-row')) {
+        detailsRow.remove();
+        icon.classList.remove('fa-minus-circle');
+        icon.classList.add('fa-info-circle');
+    } else {
+        const newDetailsRow = document.createElement('tr');
+        newDetailsRow.className = 'details-row';
+        newDetailsRow.innerHTML = `
+            <td colspan="5">
                 <table style="width: 100%;">
                     <thead>
                         <tr>
@@ -172,22 +185,17 @@ function toggleDetails(button, index) {
                     <tbody>
                         ${Object.entries(entry.moduleTimes).map(([module, time]) => `
                             <tr>
-                                <td style="text-align: center;">${module}</td>
-                                <td style="text-align: center;">${time}</td>
+                                <td>${module}</td>
+                                <td>${time}</td>
                             </tr>
                         `).join('')}
                     </tbody>
                 </table>
             </td>
         `;
-        row.parentNode.insertBefore(detailsRow, row.nextSibling);
-        button.textContent = '隐藏';
-    } else {
-        const detailsRow = row.nextSibling;
-        if (detailsRow && detailsRow.classList.contains('details-row')) {
-            detailsRow.remove();
-        }
-        button.textContent = '详情';
+        row.parentNode.insertBefore(newDetailsRow, row.nextSibling);
+        icon.classList.remove('fa-info-circle');
+        icon.classList.add('fa-minus-circle');
     }
 }
 

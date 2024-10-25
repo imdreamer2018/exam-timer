@@ -10,84 +10,13 @@ body {
     position: relative;
 }
 
-h1 {
-    color: #4a4e69;
-    margin-bottom: 20px;
-}
-
-#modules {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    width: 100%;
-    max-width: 600px;
-    margin-bottom: 20px;
-}
-
-#modules div {
-    display: flex;
-    align-items: center;
-}
-
-#modules label {
-    display: flex;
-    align-items: center;
-    flex-grow: 1;
-}
-
-#modules label i {
-    margin-right: 8px;
-    color: #4a4e69;
-}
-
-label {
-    flex-grow: 1;
-    margin-left: 10px;
-    font-weight: bold;
-}
-
-span {
-    font-size: 0.9em;
-    color: #555;
-}
-
-#controls {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-button {
-    background-color: #4a4e69;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 15px;
-    margin: 0 10px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #22223b;
-}
-
-#total-time {
-    font-weight: bold;
-    color: #4a4e69;
-}
 
 #style-selector {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 10px;
+    padding: 5px;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
+    font-size: 0.5em;
 }
 
 #style-selector label {
@@ -130,11 +59,6 @@ button:hover {
     color: #555;
 }
 
-.time-display {
-    color: #388e3c;
-    transition: color 0.3s;
-}
-
 .copy-icon {
     cursor: pointer;
     margin-left: 5px;
@@ -167,52 +91,45 @@ button:hover {
     opacity: 1;
 }
 
-.blessing {
-    text-align: center;
-    background-color: #e0f7fa;
-    color: #00796b;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    font-size: 1.2em;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 #history {
     background-color: #fff; /* 背景为白色 */
     border: 1px solid #ddd; /* 外边框 */
     padding: 10px;
-    margin-top: 25px;
+    margin-top: 10px;
     border-radius: 5px;/* 圆角 */
+    overflow-x: auto;
 }
 
 #history-table {
     width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 15px;
-    font-size: 0.6em; 
+    border-collapse: collapse; /* 确保表格边框合并 */
 }
 
 #history-table th, #history-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center; /* 确保居左对齐 */
-    background-color: #fff; /* 背景为白色 */
+    padding: 12px; /* 增加单元格的内边距 */
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    background-color: #fff; /* 确保单元格背景色为白色 */
 }
+
+#history-table th {
+    background-color: #f2f2f2; /* 为表头添加背景色 */
+}
+
 
 .details-row table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
+    margin-top: 20px;
     background-color: #fff; /* 背景为白色 */
     border: 1px solid #ddd; /* 外边框 */
 }
 
 .details-row th, .details-row td {
     border-bottom: 1px solid #eee; /* 分割线 */
-    padding: 5px;
-    text-align: left !important; /* 确保居左对齐 */
+    padding: 10px;
     font-size: 0.5em; /* 字体稍小 */
+    text-align: left;
 }
 
 .details-row th {
@@ -222,8 +139,33 @@ button:hover {
 
 .details-row td {
     background-color: #fafafa; /* 行背景色 */
+    padding: 8px; /* 详情行的内边距 */
 }
 
 .details-row tr:last-child td {
     border-bottom: none; /* 最后一行无底边 */
+}
+
+@media (max-width: 768px) {
+    #history-table th:nth-child(1),
+    #history-table td:nth-child(1) {
+        display: none; /* 隐藏序号列 */
+    }
+
+    #history-table th, #history-table td {
+        padding: 10px; /* 调整小屏幕的内边距 */
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    #history-table th:nth-child(2),
+    #history-table td:nth-child(2) {
+        display: none; /* 隐藏日期列 */
+    }
+
+    #history-table th, #history-table td {
+        padding: 8px; /* 调整更小屏幕的内边距 */
+        font-size: 12px;
+    }
 }
