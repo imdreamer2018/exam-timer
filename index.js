@@ -47,11 +47,11 @@ window.addEventListener('beforeunload', (event) => {
 });
 
 function checkAlerts() {
-    if (totalSeconds === 10) {
+    if (totalSeconds === 3600) { // 考试时间过半
         playAudio('examAlert1');
-    } else if (totalSeconds === 20) {
+    } else if (totalSeconds === 6600) { // 考试时间仅剩10分钟
         playAudio('examWillEnd');
-    } else if (totalSeconds === 30) { // 假设考试时间为2小时
+    } else if (totalSeconds === 7200) { // 考试时间结束
         playAudio('examEnd');
     }
 }
