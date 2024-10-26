@@ -30,6 +30,7 @@ document.getElementById('start').addEventListener('click', () => {
             document.getElementById('start').innerHTML = '<i class="fas fa-play"></i> 开始';
         } else {
             interval = setInterval(() => {
+                // 确保当前模块的时间被更新
                 timers[currentModule] = (timers[currentModule] || 0) + 1;
                 totalSeconds++;
                 updateDisplay();
@@ -108,14 +109,14 @@ document.getElementById('save').addEventListener('click', () => {
         
         // 保存每个模块的时间
         const moduleTimes = {
-            "常识判断": formatTime(timers["常识判断"] || 0),
-            "言语理解与表达": formatTime(timers["言语理解与表达"] || 0),
-            "数量关系": formatTime(timers["数量关系"] || 0),
-            "图形推理": formatTime(timers["图形推理"] || 0),
-            "定义推理": formatTime(timers["定义推理"] || 0),
-            "类比推理": formatTime(timers["类比推理"] || 0),
-            "逻辑推理": formatTime(timers["逻辑推理"] || 0),
-            "资料分析": formatTime(timers["资料分析"] || 0)
+            "常识判断": formatTime(timers["common"] || 0),
+            "言语理解与表达": formatTime(timers["verbal"] || 0),
+            "数量关系": formatTime(timers["quantitative"] || 0),
+            "图形推理": formatTime(timers["graphic"] || 0),
+            "定义推理": formatTime(timers["definition"] || 0),
+            "类比推理": formatTime(timers["analogy"] || 0),
+            "逻辑推理": formatTime(timers["logic"] || 0),
+            "资料分析": formatTime(timers["data"] || 0)
         };
         
         const totalTime = formatTime(totalSeconds);
