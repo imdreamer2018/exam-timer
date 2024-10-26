@@ -212,10 +212,13 @@ function editHistory(index) {
 }
 
 function deleteHistory(index) {
-    const history = JSON.parse(localStorage.getItem('exam_timer_history') || '[]');
-    history.splice(index, 1);
-    localStorage.setItem('exam_timer_history', JSON.stringify(history));
-    loadHistory();
+    const confirmDelete = confirm('您确定要删除这条计时记录吗？');
+    if (confirmDelete) {
+        const history = JSON.parse(localStorage.getItem('exam_timer_history') || '[]');
+        history.splice(index, 1);
+        localStorage.setItem('exam_timer_history', JSON.stringify(history));
+        loadHistory();
+    }
 }
 
 document.getElementById('toggle-history').addEventListener('click', () => {
