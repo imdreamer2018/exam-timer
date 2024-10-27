@@ -42,12 +42,6 @@ document.getElementById('start').addEventListener('click', () => {
     }
 });
 
-document.getElementById('stop').addEventListener('click', () => {
-    clearInterval(interval);
-    interval = null;
-    document.getElementById('start').textContent = '开始';
-    document.getElementById('start').innerHTML = '<i class="fas fa-play"></i> 开始';
-});
 
 document.querySelectorAll('input[type=radio][name=module]').forEach(radio => {
     radio.addEventListener('change', (event) => {
@@ -228,5 +222,20 @@ document.getElementById('toggle-history').addEventListener('click', () => {
         loadHistory(); // 加载历史数据
     } else {
         historyDiv.style.display = 'none';
+    }
+});
+
+document.getElementById('reset').addEventListener('click', function() {
+    if (confirm('是否重置计时？')) {
+        // 重置所有模块时间
+        document.querySelectorAll('.time-display').forEach(function(span) {
+            span.textContent = '00:00:00';
+        });
+        // 重置累计时长
+        document.getElementById('total-time-display').textContent = '00:00:00';
+        
+        // 重置计时器变量
+        totalSeconds = 0;
+        timers = {};
     }
 });
