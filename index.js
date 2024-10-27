@@ -227,6 +227,14 @@ document.getElementById('toggle-history').addEventListener('click', () => {
 
 document.getElementById('reset').addEventListener('click', function() {
     if (confirm('是否重置计时？')) {
+        // 如果正在计时，先暂停
+        if (interval) {
+            clearInterval(interval);
+            interval = null;
+            document.getElementById('start').textContent = '开始';
+            document.getElementById('start').innerHTML = '<i class="fas fa-play"></i> 开始';
+        }
+
         // 重置所有模块时间
         document.querySelectorAll('.time-display').forEach(function(span) {
             span.textContent = '00:00:00';
