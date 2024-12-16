@@ -2,9 +2,10 @@ let currentModule = null;
 let timers = {};
 let totalSeconds = 0;
 let interval = null;
+let lastHiddenTime = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-    const examDate = new Date('2024-12-01');
+    const examDate = new Date('2025-12-01');
     const today = new Date();
     const timeDiff = examDate - today;
     const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
@@ -247,3 +248,38 @@ document.getElementById('reset').addEventListener('click', function() {
         timers = {};
     }
 });
+
+document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') {
+        if (lastHiddenTime) {
+            const now = new Date();
+            const hiddenDuration = Math.floor((now - lastHiddenTime) / 1000); // 计算息屏期间的秒数
+
+            // 更新计时器
+            if (currentModule) {
+                timers[currentModule] = (timers[currentModule] || 0) + hiddenDuration;
+            }
+            totalSeconds += hiddenDuration;
+
+            // 恢复计时
+            if (!interval) {
+                startTimer();
+            }
+        }
+    } else {
+        // 页面不可见时，记录当前时间并暂停计时
+        lastHiddenTime = new Date();
+        clearInterval(interval);
+        interval = null;
+    }
+});
+
+function startTimer() {
+    interval = setInterval(() => {
+        // 确保当前模块的时间被更新
+        timers[currentModule] = (timers[currentModule] || 0) + 1;
+        totalSeconds++;
+        updateDisplay();
+        checkAlerts();
+    }, 1000);
+}
