@@ -13,6 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const countdownElement = document.getElementById('countdown');
     countdownElement.textContent = `距离2026国考剩余 ${daysLeft} 天！祝你金榜题名，早日上岸！`;
 
+
+    const downloadButton = document.createElement('button');
+    downloadButton.innerHTML = '<i class="fab fa-apple"></i> iOS版本已上线，点击下载';
+    downloadButton.className = 'download-button';
+    downloadButton.onclick = () => window.open('https://apps.apple.com/cn/app/%E8%A1%8C%E6%B5%8B%E8%AE%A1%E6%97%B6%E5%99%A8/id6743857064?platform=iphone');
+    countdownElement.parentNode.insertBefore(downloadButton, countdownElement.nextSibling);
+
     const styleSelector = document.getElementById('style');
     const themeStyleLink = document.getElementById('theme-style');
 
@@ -20,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedStyle = event.target.value;
         themeStyleLink.setAttribute('href', selectedStyle);
     });
+
+
 });
 
 document.getElementById('start').addEventListener('click', () => {

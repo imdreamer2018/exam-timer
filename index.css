@@ -149,3 +149,19 @@ body {
         font-size: 10px;
     }
 }
+
+
+.download-button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.download-button i {
+    margin-right: 8px;
+}
